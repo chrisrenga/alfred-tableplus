@@ -1,0 +1,17 @@
+{
+    "name": "chrisrenga/alfred-tableplus",
+    "description": "An ultra-fast TablePlus search workflow for Alfred 3.",
+    "version": "0.0.1",
+    "keywords": ["alfred", "alfred-workflow", "TablePlus", "tableplus", "table plus", "mysql", "sql", "redis"],
+    "homepage": "https://chrisrenga.com",
+    "support": {
+        "source": "https://github.com/chrisrenga/alfred-tableplus",
+        "issues": "https://github.com/chrisrenga/alfred-tableplus/issues"
+    },
+    "license": "MIT",
+    "require": {
+        "joetannenbaum/alfred-workflow": "^0.1.0",
+        "erusev/parsedown": "^1.7",
+        "akturan/plistparser": "^1.1"
+    }
+}
