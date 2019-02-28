@@ -16,7 +16,7 @@ $connections = $plist->plistToArray($_SERVER['HOME'] . '/Library/Application Sup
 $groups = $plist->plistToArray($_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus/Data/ConnectionGroups.plist');
 
 $results = array_filter($connections, function ($connection) use ($query) {
-    return strpos($connection['ConnectionName'], $query) !== false;
+    return strpos(strtolower($connection['ConnectionName']), strtolower($query)) !== false;
 });
 
 $urls = [];
