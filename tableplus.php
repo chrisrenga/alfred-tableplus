@@ -12,8 +12,14 @@ $query = $argv[1];
 
 preg_match('/^\h*?v?(master|(?:[\d]+)(?:\.[\d]+)?(?:\.[\d]+)?)?\h*?(.*?)$/', $query, $matches);
 
-$connections = $plist->plistToArray($_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus/Data/Connections.plist');
-$groups = $plist->plistToArray($_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus/Data/ConnectionGroups.plist');
+$default_connections_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus/Data/Connections.plist';
+$default_groups_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus/Data/ConnectionGroups.plist';
+
+$setapp_connections_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus-setapp/Data/Connections.plist';
+$setapp_groups_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus-setapp/Data/ConnectionGroups.plist';
+
+$connections = $plist->plistToArray(file_exists($setapp_connections_path) ? $setapp_connections_path : $default_connections_path);
+$groups = $plist->plistToArray(file_exists($setapp_groups_path) ? $setapp_groups_path : $default_groups_path);
 
 $results = array_filter($connections, function ($connection) use ($query) {
     return strpos(strtolower($connection['ConnectionName']), strtolower($query)) !== false;
