@@ -60,10 +60,12 @@
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>keyword</key>
@@ -79,9 +81,9 @@
 				<key>runningsubtext</key>
 				<string>Searching connections for "{query}"...</string>
 				<key>script</key>
-				<string>php tableplus.php "{query}"</string>
+				<string>php tableplus.php "$1"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -98,7 +100,7 @@
 			<key>uid</key>
 			<string>7B86D057-DA8E-4302-AF17-83B889B48EE2</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
