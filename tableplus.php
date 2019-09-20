@@ -21,7 +21,7 @@ $setapp_groups_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinya
 $connections = $plist->plistToArray(file_exists($setapp_connections_path) ? $setapp_connections_path : $default_connections_path);
 $groups = $plist->plistToArray(file_exists($setapp_groups_path) ? $setapp_groups_path : $default_groups_path);
 
-$results = array_filter($connections, function ($connection) use ($query) {
+$results = empty($query) ? $connections : array_filter($connections, function ($connection) use ($query) {
     return strpos(strtolower($connection['ConnectionName']), strtolower($query)) !== false;
 });
 
