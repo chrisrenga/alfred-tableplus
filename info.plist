@@ -122,8 +122,10 @@
 			<integer>90</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>0.2.1</string>
+	<string>1.0</string>
 	<key>webaddress</key>
 	<string>https://www.chrisrenga.com</string>
 </dict>
