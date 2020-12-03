@@ -1,7 +1,7 @@
 {
     "name": "chrisrenga/alfred-tableplus",
     "description": "An ultra-fast TablePlus search workflow for Alfred 3.",
-    "version": "0.0.2",
+    "version": "1.0",
     "keywords": ["alfred", "alfred-workflow", "TablePlus", "tableplus", "table plus", "mysql", "sql", "redis"],
     "homepage": "https://chrisrenga.com",
     "support": {

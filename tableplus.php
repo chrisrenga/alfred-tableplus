@@ -12,14 +12,22 @@ $query = $argv[1];
 
 preg_match('/^\h*?v?(master|(?:[\d]+)(?:\.[\d]+)?(?:\.[\d]+)?)?\h*?(.*?)$/', $query, $matches);
 
-$default_connections_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus/Data/Connections.plist';
-$default_groups_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus/Data/ConnectionGroups.plist';
+$isSetApp = file_exists($_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus-setapp');
+$basepath = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus' . ($isSetApp ? '-setapp' : null) . '/Data';
 
-$setapp_connections_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus-setapp/Data/Connections.plist';
-$setapp_groups_path = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus-setapp/Data/ConnectionGroups.plist';
+exec('defaults read com.tinyapp.TablePlus ViewSetting | grep "SharedConnectionPath"', $sharedConnectionPath);
 
-$connections = $plist->plistToArray(file_exists($setapp_connections_path) ? $setapp_connections_path : $default_connections_path);
-$groups = $plist->plistToArray(file_exists($setapp_groups_path) ? $setapp_groups_path : $default_groups_path);
+// cleanup path string
+$sharedConnectionPath = trim($sharedConnectionPath[0]);
+$sharedConnectionPath = explode(' = ', $sharedConnectionPath);
+$sharedConnectionPath = trim(trim($sharedConnectionPath[1], '"'), '";');
+
+if (!empty($sharedConnectionPath)) {
+    $basepath = $sharedConnectionPath;
+}
+
+$connections = $plist->plistToArray($basepath . '/Connections.plist');
+$groups = $plist->plistToArray($basepath . '/ConnectionGroups.plist');
 
 $results = empty($query) ? $connections : array_filter($connections, function ($connection) use ($query) {
     return strpos(strtolower($connection['ConnectionName']), strtolower($query)) !== false;
