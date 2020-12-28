@@ -15,7 +15,7 @@ preg_match('/^\h*?v?(master|(?:[\d]+)(?:\.[\d]+)?(?:\.[\d]+)?)?\h*?(.*?)$/', $qu
 $isSetApp = file_exists($_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus-setapp');
 $basepath = $_SERVER['HOME'] . '/Library/Application Support/com.tinyapp.TablePlus' . ($isSetApp ? '-setapp' : null) . '/Data';
 
-exec('defaults read com.tinyapp.TablePlus ViewSetting | grep "SharedConnectionPath"', $sharedConnectionPath);
+exec('defaults read com.tinyapp.TablePlus' . ($isSetApp ? '-setapp' : null) . ' ViewSetting | grep "SharedConnectionPath"', $sharedConnectionPath);
 
 // cleanup path string
 $sharedConnectionPath = trim($sharedConnectionPath[0]);
