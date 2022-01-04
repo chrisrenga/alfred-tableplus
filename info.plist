@@ -81,7 +81,13 @@
 				<key>runningsubtext</key>
 				<string>Searching connections for "{query}"...</string>
 				<key>script</key>
-				<string>php tableplus.php "$1"</string>
+				<string>if [ -f "/opt/homebrew/bin/php" ]; then
+    /opt/homebrew/bin/php tableplus.php "$1"
+elif [ -f "/usr/local/bin/php" ]; then
+    /usr/local/bin/php tableplus.php "$1"
+elif [ -f "/usr/bin/php" ]; then
+    /usr/bin/php tableplus.php "$1"
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
