@@ -38,8 +38,11 @@ $urls = [];
 foreach ($results as $result) {
     $connection = $result;
 
-    $groupKey = array_search($connection['GroupID'], array_column($groups, 'ID'));
-    $group = $groups[$groupKey];
+    unset($group, $groupKey);
+    if (!empty($groups)) {
+        $groupKey = array_search($connection['GroupID'], array_column($groups, 'ID'));
+        if ($groupKey !== false) $group = $groups[$groupKey];
+    }
 
     $url = 'tableplus://?id=' . sprintf($connection['ID']);
 
@@ -51,7 +54,7 @@ foreach ($results as $result) {
 
     $title = "{$connection['ConnectionName']} » {$connection['Driver']}";
 
-    $text = "{$group['Name']} » {$connection['Enviroment']}";
+    $text = empty($group) ? "{$connection['Enviroment']}" : "{$group['Name']} » {$connection['Enviroment']}";
 
     $title = strip_tags(html_entity_decode($title, ENT_QUOTES, 'UTF-8'));
 
